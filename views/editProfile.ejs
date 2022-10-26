@@ -1,0 +1,126 @@
+<% include('partials/header') %>
+<form action="/profiles/editProfile/<%= profile._id %>?_method=PUT" enctype="multipart/form-data" method="POST">
+    <div> 
+        <!-- implement logic to auto-populate form with users current data-->
+            <label for="myName">Name:</label>
+                <input type="text" id="myName" name="firstname" placeholder="first"  value ="<%= profile.myName.first ? profile.myName.first : ''%>">
+                <input type="text" id="myName" name="middlename" placeholder="middle">
+                <input type="text" id="myName" name="lastname" placeholder="last">
+    </div>
+    <div>
+            <label for="profilePic">This is where you upload a picture of you being awesome</label>
+    </div>
+    <div>
+        <button>Upload profile pic</button>
+    </div>
+    <div>
+        <label for="modalities">Which modalities do you practice?</label>  <!-- will have to $push the checked box values into schema modalities array I think-->
+        <label for="massage">Massage</label>
+        <input type="checkbox" name="modalities" value="massage">
+        <label for="swedish">Swedish</label>
+        <input type="checkbox" name="modalities" value="swedish">
+        <label for="reiki">Reiki</label>
+        <input type="checkbox" name="modalities" value="reiki">
+        <label for="shiatsu">Shiatsu</label>
+        <input type="checkbox" name="modalities" value="shiatsu">
+        <label for="lomi-lomi">Lomi Lomi</label>
+        <input type="checkbox" name="modalities" value="lomi-lomi">
+        <label for="thai">Thai</label>
+        <input type="checkbox" name="modalities" value="thai">
+        <label for="sports">Sports</label>
+        <input type="checkbox" name="modalities" value="sports">
+        <label for="prenatal">Prenatal</label>
+        <input type="checkbox" name="modalities" value="prenatal">
+        <label for="physical-therapy">Physical Therapy</label>
+        <input type="checkbox" name="modalities" value="physical-therapy">
+        <label for="yoga">Yoga</label>
+        <input type="checkbox" name="modalities" value="yoga">
+        <label for="yin">Yin</label>
+        <input type="checkbox" name="modalities" value="yin">
+        <label for="hatha">Hatha</label>
+        <input type="checkbox" name="modalities" value="hatha">
+        <label for="vinyasa">Vinyasa</label>
+        <input type="checkbox" name="modalities" value="vinyasa">
+        <label for="kundalini">Kundalini</label>
+        <input type="checkbox" name="modalities" value="kundalini">
+        <label for="crystal">Crystal</label>
+        <input type="checkbox" name="modalities" value="crystal">
+        <label for="sound-bath">Sound Baths</label>
+        <input type="checkbox" name="modalities" value="sound-bath">
+        <label for="color">Color Therapy</label>
+        <input type="checkbox" name="modalities" value="color">
+        <label for="float">Sensory Deprivation</label>
+        <input type="checkbox" name="modalities" value="float">
+    </div>
+    <div>
+
+    </div>
+    <div class="mb-3">
+        <label for="certUpload" class="form-label">Image</label>
+        <input type="file" class="form-control" id="certUpload" name="file">
+    <div>
+    <div>
+        <a href=""><button>+</button></a>
+        <!--this button will have to upload a picture then reload the page with the-->
+    </div>
+
+    <div>
+        <label for="yearsExperience">How long have you been practicing?</label>
+        <input type="number" name="yearsExperience">        
+    </div>
+    <div>
+        <label for="bio">Bio:</label>
+        <textarea name="bio" id="bio" cols="30" rows="10"></textarea>
+    </div>
+    <div>
+        <label for="certs"> this is where you upload images of any liscences/certification you've earned</label>       
+    </div>
+    <div class="mb-3">
+        <label for="imgUpload" class="form-label">Image</label>
+        <label for="lbl"></label>
+        <input type="file" class="form-control" id="imageUpload" name="file">
+    <div>
+    <div>
+         
+    </div>
+
+    <div>
+           <button type="submit">submit</button>
+    </div>
+ 
+
+</form>
+<div>
+    <h3>This is where you upload images of your proof of insurance</h3>
+</div>
+<form action="../routes/insurance/addInsurance" enctype="multipart/form-data" method="POST">
+ 
+    <div>
+        <label for="title">What kind of insurance?</label>
+        <input type="text" id="title" name="title">
+    </div>
+    <div>
+        <label for="expires">Expires</label>
+        <input type="date">
+    </div>
+    <div class="mb-3">
+        <label for="imgUpload" class="form-label">Image</label>
+        <input type="file" class="form-control" id="imageUpload" name="insuranceFile">
+    <div>
+    <div>
+        <button type="submit" class="btn btn-primary"value="Upload" >+</button>
+    </div>
+</form>
+    <ul>
+        <% if (profile.insurance) { %>
+            <% for(var i=0; i<profile.insurance.length; i++) {%>
+                <li>
+                    <img src="<%= profile.insurance[i].imgURL%>" alt="">
+                    <!--delete button-->
+                </li>
+            <% }%>
+        <%}%>
+    </ul>
+
+
+<% include('partials/footer') %>
